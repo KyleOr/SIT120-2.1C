@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Things to do</title>
+  
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Things to do</h1>
+    
+    <form @submit.prevent="addTodo">
+      <input v-model="newTodo" placeholder="Add a new task">
+      <select v-model="selectedPriority">
+        <option v-for="priority in priorities" :key="priority" :value="priority">{{ priority }}</option>
+      </select>
+      <button>Add</button>
+    </form>
+    
+    <ul class="todo-list">
+      <li v-for="(todo, index) in sortedTodos" :key="index" class="todo-item">
+        <input type="checkbox" v-model="todo.completed" class="todo-checkbox">
+         {{ todo.priority }} {{ todo.text }} 
+        <button @click="removeTodo(index, todo.priority)">Delete</button>
+      </li>
+    </ul>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.1/dist/vue.global.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

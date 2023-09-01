@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 Concepts</title>
+  
+  <!-- Include Vue.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.1/dist/vue.global.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue 3 concepts trial</h1>
+
+    <!-- Conditional Rendering with v-if and v-else -->
+    <p v-if="showMessage">I did this with v-if.</p>
+    <p v-else>this appears when v-if is false.</p>
+
+    <!-- Conditional Rendering with v-show -->
+    <p v-show="showMessage">I did this through v-show.</p>
+
+    <!-- Looping with v-for -->
+    <ul>
+      <li v-for="(item, index) in items" :key="index">{{ item }}</li>
+    </ul>
+
+    <!-- Using v-if with v-for -->
+    <div v-for="(person, index) in people" :key="index">
+      <p v-if="person.age >= 18">{{ person.name }} can drink.</p>
+      <p v-else>{{ person.name }} cannot drink.</p>
+    </div>
+
+    <!-- Form Input Handling with v-model -->
+    <input type="text" v-model="inputText" placeholder="Type something...">
+    <p>You typed: {{ inputText }}</p>
+  </div>
+
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          showMessage: true,
+          items: ['thing 1', 'thing 2', 'thing 3'],
+          people: [
+            { name: 'Alice', age: 25 },
+            { name: 'Bob', age: 17 },
+            { name: 'Charlie', age: 30 },
+          ],
+          inputText: '',
+        };
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
